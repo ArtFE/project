@@ -43,8 +43,8 @@ export const deleteReservation = async (req, res) => {
     const reservationId = req.params.id;
 
     await Reservation.findByIdAndDelete(reservationId);
-
-    res.json({ message: "Reservation deleted" });
+    const reservations = await Reservation.find();
+    res.json({ message: "Reservation deleted", reservations });
   } catch (error) {
     console.log(err);
     res.json({ messages: "Error..." });

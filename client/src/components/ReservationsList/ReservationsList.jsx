@@ -1,12 +1,13 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ReservationItem from "../ReservationItem";
 import { StyledContainer, StyledHeadline } from "./styles";
 import Pagination from "../Pagination";
+import { ItemsContext } from "../../contexts/ItemsContextProvider";
 
 const ReservationsList = () => {
-  const [items, setItems] = useState([]);
+  const { items, setItems } = useContext(ItemsContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
 

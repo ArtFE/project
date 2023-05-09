@@ -10,16 +10,20 @@ import {
   StyledButtonsContainer,
 } from "./styles";
 import axios from "axios";
+import { ItemsContext } from "../../contexts/ItemsContextProvider";
 
 const ReservationItem = ({ item, index, action }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { setItems } = useContext(ItemsContext);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
   const handleDelete = async (e, _id) => {
     e.preventDefault();
-    await axios.delete(`http://localhost:5000/api/reservations/${_id}`);
+    const res = await axios.delete(
+      `http://localhost:5000/api/reservations/${_id}`
+    );
+    setItems(res.data.reservations);
   };
 
   return (
