@@ -1,0 +1,27 @@
+###
+POST http://localhost:5000/api/reservations
+Content-Type: application/json
+
+{
+    "name": "Igoris",
+    "surname": "Fom",
+    "email": "artfom@gmail.com",
+    "age": 24
+}
+
+###
+GET http://localhost:5000/api/reservations
+
+###
+PUT http://localhost:5000/api/reservations/
+Content-Type: application/json
+
+{
+    "name": "Artiomas 2",
+    "surname": "Fom",
+    "email": "artfom@gmail.com",
+    "age": 3
+}
+
+###
+DELETE http://localhost:5000/api/reservations/
