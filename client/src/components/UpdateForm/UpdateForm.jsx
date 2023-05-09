@@ -1,23 +1,29 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { StyledLabel, StyledContainer, StyledButton } from "./styles";
+import { ItemsContext } from "../../contexts/ItemsContextProvider";
 
 const UpdateForm = ({ closeModal, id, action }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
+  const { setItems } = useContext(ItemsContext);
 
   const updateReservation = async () => {
     let item = { name, surname, age, email };
     console.log(item);
-    await axios.put(`http://localhost:5000/api/reservations/${id}`, {
-      name: item.name,
-      surname: item.surname,
-      email: item.email,
-      age: item.age,
-    });
+    const res = await axios.put(
+      `http://localhost:5000/api/reservations/${id}`,
+      {
+        name: item.name,
+        surname: item.surname,
+        email: item.email,
+        age: item.age,
+      }
+    );
+    setItems(res.data.reservations);
     closeModal();
   };
 

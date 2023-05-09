@@ -30,8 +30,8 @@ export const updateReservation = async (req, res) => {
 
     await Reservation.findByIdAndUpdate(reservationId, updatedReservationData);
     const updatedReservation = await Reservation.findById(reservationId);
-
-    res.json(updatedReservation);
+    const reservations = await Reservation.find();
+    res.json({ updatedReservation, reservations });
   } catch (error) {
     console.log(err);
     res.json({ messages: "Error ..." });
